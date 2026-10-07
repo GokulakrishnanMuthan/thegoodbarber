@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme */
+    --background: 40 33% 98%;
+    --foreground: 24 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 24 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 10% 10%;
+
+    --primary: 38 64% 48%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 40 20% 94%;
+    --secondary-foreground: 24 10% 10%;
+
+    --muted: 40 15% 92%;
+    --muted-foreground: 25 8% 40%;
+
+    --accent: 38 64% 48%;
+    --accent-foreground: 0 0% 8%;
+
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 38 64% 48%;
+
+    --radius: 0.9rem;
+  }
+
+  .dark {
+    /* Premium black + gold theme */
+    --background: 0 0% 4%;
+    --foreground: 40 30% 96%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 40 30% 96%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 40 30% 96%;
+
+    --primary: 42 62% 58%;
+    --primary-foreground: 0 0% 6%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 40 30% 96%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 8% 62%;
+
+    --accent: 42 62% 58%;
+    --accent-foreground: 0 0% 6%;
+
+    --border: 40 10% 18%;
+    --input: 40 10% 18%;
+    --ring: 42 62% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  @media (max-width: 639px) {
+    body {
+      padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    }
+    html {
+      scroll-padding-bottom: calc(6rem + env(safe-area-inset-bottom));
+    }
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-gold-600/50;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gold-500/70;
+  }
+
+  ::selection {
+    @apply bg-gold-400/30 text-foreground;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-xl backdrop-saturate-150;
+  }
+
+  .glass-dark {
+    @apply border border-white/[0.08] bg-black/40 text-white backdrop-blur-xl;
+  }
+
+  .text-gold-gradient {
+    @apply bg-gold-gradient bg-clip-text text-transparent;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  /* Animated gold underline for links */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 0;
+    @apply bg-gold-gradient;
+    transition: width 0.3s ease;
+  }
+  .link-underline:hover::after,
+  .link-underline[data-active="true"]::after {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

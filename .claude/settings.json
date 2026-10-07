@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "PowerShell(Set-Location \"c:\\\\Users\\\\2249282\\\\OneDrive - Cognizant\\\\Documents\\\\Vibecode\\\\goodbarber\"; $p = Start-Process npm -ArgumentList \"run\",\"start\" -PassThru -NoNewWindow; Start-Sleep -Seconds 9; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 20; Write-Output \"STATUS: $\\($r.StatusCode\\)\"; Write-Output \\(\"HAS_HERO: \" + \\($r.Content -match 'Feel Confident'\\)\\); Write-Output \\(\"HAS_JSONLD: \" + \\($r.Content -match 'HairSalon'\\)\\) } catch { Write-Output \"ERR: $\\($_.Exception.Message\\)\" } finally { Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue })",
+      "Bash(node node_modules/next/dist/bin/next start -p 3123)",
+      "Bash(curl -s \"http://localhost:3123/robots.txt\")",
+      "Bash(curl -s \"http://localhost:3123/sitemap.xml\")",
+      "Bash(node node_modules/next/dist/bin/next build)",
+      "PowerShell(cd \"c:\\\\Users\\\\2249282\\\\OneDrive - Cognizant\\\\Documents\\\\Vibecode\\\\goodbarber\"; $p = Start-Process -FilePath \"npm\" -ArgumentList \"run\",\"start\" -PassThru -WindowStyle Hidden -RedirectStandardOutput \"$env:TEMP\\\\gb_out.log\" -RedirectStandardError \"$env:TEMP\\\\gb_err.log\"; Start-Sleep -Seconds 9; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 20; \"STATUS: $\\($r.StatusCode\\)\"; $html = $r.Content; foreach \\($needle in @\\(\"The Good Barber\",\"No Salon Visit Needed\",\"Combo 999\",\"wa.me/918838742490\",\"Book on WhatsApp\",\"FAQPage\"\\)\\) { if \\($html -match [regex]::Escape\\($needle\\)\\) { \"FOUND: $needle\" } else { \"MISSING: $needle\" } } } finally { Stop-Process -Id $p.Id -Force; Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue })",
+      "Bash(node node_modules/next/dist/bin/next dev -p 3000)",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code}\\\\n\" --max-time 5 http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code}\\\\n\" --max-time 8 http://localhost:3000)"
+    ]
+  }
+}
